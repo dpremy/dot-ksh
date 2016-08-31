@@ -1,0 +1,7 @@
+if [ -e ~/.files/bin ]; then
+   export PATH=~/.files/bin:$PATH
+fi
+
+if [ -e ~/.dotfiles/bin ]; then
+   export PATH=~/.dotfiles/bin:$PATH
+fi
