@@ -1,5 +1,3 @@
-#!/bin/ksh
-
 # unset variables
   TTY_COLOR=''
   GNU_TTY_COLOR=''
