@@ -1,64 +1,91 @@
 #!/bin/ksh
 
+# unset variables
+  TTY_COLOR=''
+  GNU_TTY_COLOR=''
+  GNU_PRESERVE=''
+  GNU=''
+
+# detect if tty color support is installed
+  if (`command -v dircolor >/dev/null 2>&1`); then
+    TTY_COLOR=' --color=tty'
+    GNU_TTY_COLOR=' --color=tty'
+  fi
+
+# detect if gnu coreutils are installed
+  if (`command -v gdircolors >/dev/null 2>&1`); then
+    GNU_TTY_COLOR=' --color=tty'
+    GNU_PRESERVE=' --preserve-root'
+    GNU='g'
+  fi
+
 # ls
-alias ls='ls -F --color=auto'
-alias lsa='ls -lah --color=auto'
-alias l='ls -la --color=auto'
-alias ll='ls -l --color=auto'
-alias la='ls -lA --group-directories-first --color=auto'
-alias ls.='ls -d .* --color=auto'
-alias sl=ls
+  alias ls=$GNU'ls -F'$GNU_TTY_COLOR
+  alias lsa=$GNU'ls -lah'$GNU_TTY_COLOR
+  alias l=$GNU'ls -la'$GNU_TTY_COLOR
+  alias ll=$GNU'ls -l'$GNU_TTY_COLOR
+  alias la=$GNU'ls -lA --group-directories-first'$GNU_TTY_COLOR
+  alias ls.=$GNU'ls -d .*'$GNU_TTY_COLOR
 
 # directory management
-alias ..='cd ..'
-alias cd..='cd ..'
+  alias ..='cd ..'
+  alias cd..='cd ..'
 
 # confirmation on mass file changes
-alias mv='mv -i'
-alias cp='cp -i'
-alias ln='ln -i'
+  alias mv='mv -i'
+  alias cp='cp -i'
+  alias ln='ln -i'
 
 # prompt if changing perms or owner on more than 3 files at a time
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
+  alias chown=$GNU'chown'$GNU_PRESERVE
+  alias chmod=$GNU'chmod'$GNU_PRESERVE
+  alias chgrp=$GNU'chgrp'$GNU_PRESERVE
 
 # mount
-alias mount='mount |column -t'
+  alias mount='mount |column -t'
+
+# who
+  # show user idle time
+  alias who='who -u'
 
 # htop
-if (`which htop >/dev/null 2>&1`); then
-  alias top='htop'
-fi
+  if (`command -v htop >/dev/null 2>&1`); then
+    alias top='htop'
+  fi
 
 # diff
-if (`which colordiff >/dev/null 2>&1`); then
-  alias diff='colordiff'
-fi
+  if (`command -v colordiff >/dev/null 2>&1`); then
+    alias diff='colordiff'
+  fi
 
 # wget
-alias wget='wget -c' # enable continue of downloads
+  # enable continue of downloads
+  alias wget='wget -c'
 
 # tar
-alias untar='tar -zxvf'
+  alias untar='tar -zxvf'
 
 # rsync
-if (`which rsync >/dev/null 2>&1`); then
-  alias rsync-copy='rsync -avzh --progress --stats'
-  alias rsync-mirror='rsync -avzh --progress --stats --delete-before --delete-excluded'
-  alias rsync-move='rsync -avzh --progress --stats --remove-source-files'
-  alias rsync-synchronize='rsync -avzuh --progress --stats --delete'
-  alias rsync-update='rsync -avzuh --progress --stats'
-fi
+  if (`command -v rsync >/dev/null 2>&1`); then
+    alias rsync-copy='rsync -avzh --progress --stats'
+    alias rsync-mirror='rsync -avzh --progress --stats --delete-before --delete-excluded'
+    alias rsync-move='rsync -avzh --progress --stats --remove-source-files'
+    alias rsync-synchronize='rsync -avzuh --progress --stats --delete'
+    alias rsync-update='rsync -avzuh --progress --stats'
+  fi
 
 # grep
-alias grep-nocomments='grep -Ev '\''^( *)(#|$|;)'\''' # greps a file for lines without comments
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+  alias grep='grep'$TTY_COLOR
+  alias fgrep='fgrep'$TTY_COLOR
+  alias egrep='egrep'$TTY_COLOR
+
+  # greps a file for lines without comments
+  alias grep-nocomments='grep -Ev '\''^( *)(#|$|;)'\'''
 
 # dmesg
-alias dmesg='dmesg -L auto -T'
+  if [[ `uname` == 'Linux' ]]; then
+    alias dmesg='dmesg -L auto -T'
+  fi
 
 # disk, partition, folder and file usage commands
   # disk usage in the current directory
@@ -74,3 +101,8 @@ alias dmesg='dmesg -L auto -T'
   function usagehogs {
     du -k * 2>/dev/null | sort -nr | awk '{ if($1>=1024*1024) {size=$1/1024/1024; unit="G"} else if($1>=1024) {size=$1/1024; unit="M"} else {size=$1; unit="K"}; if(size<10) format="%.1f%s"; else format="%.0f%s"; res=sprintf(format,size,unit); printf "%-8s %s\n",res,$2 }'
   }
+
+# unset variables
+  unset TTY_COLOR
+  unset GNU_TTY_COLOR
+  unset GNU

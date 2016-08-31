@@ -11,9 +11,6 @@ alias __D=`echo "\002"`     # left arrow = ^b = back a character
 alias __H=`echo "\001"`     # home = ^a = start of line
 alias __Y=`echo "\005"`     # end = ^e = end of line
 
-# enable path globbing
-set -o globstar
-
 # history options
 export EXTENDED_HISTORY=ON
 export HISTFILE="$HOME/.ksh_history"

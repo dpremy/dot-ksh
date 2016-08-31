@@ -1,0 +1,7 @@
+#!/bin/ksh
+
+# ksh prompt configuration
+KSH_PS1="\e[01;32m\u\e[01;34m@\e[01;36m\h \e[01;33m(ksh) \e[01;33m\w \e[00;32m\t\e[00m\\n\\$ "
+
+# configure default shell prompt
+PS1=$KSH_PS1
