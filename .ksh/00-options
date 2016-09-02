@@ -9,7 +9,11 @@ alias __D=`echo "\002"`     # left arrow = ^b = back a character
 alias __H=`echo "\001"`     # home = ^a = start of line
 alias __Y=`echo "\005"`     # end = ^e = end of line
 
+# utf8 locale support
+export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # history options
 export EXTENDED_HISTORY=ON
 export HISTFILE="$HOME/.ksh_history"
-export HISTSIZE=${HISTSIZE:-"2000"}
+export HISTSIZE=${HISTSIZE:-"5000"}
