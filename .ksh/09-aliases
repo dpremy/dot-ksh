@@ -1,7 +1,10 @@
-# unset variables
+#!/usr/bin/env ksh
+
+# set default variables
   TTY_COLOR=''
   GNU_TTY_COLOR=''
   GNU_PRESERVE=''
+  GNU_i=''
   GNU=''
 
 # detect if tty color support is installed
@@ -14,6 +17,7 @@
   if (`command -v gdircolors >/dev/null 2>&1`); then
     GNU_TTY_COLOR=' --color=tty'
     GNU_PRESERVE=' --preserve-root'
+    GNU_i=' -i'
     GNU='g'
   fi
 
@@ -30,9 +34,9 @@
   alias cd..='cd ..'
 
 # confirmation on mass file changes
-  alias mv='mv -i'
-  alias cp='cp -i'
-  alias ln='ln -i'
+  alias mv$GNU='mv'$GNU_i
+  alias cp=$GNU'cp'$GNU_i
+  alias ln=$GNU'ln'$GNU_i
 
 # prompt if changing perms or owner on more than 3 files at a time
   alias chown=$GNU'chown'$GNU_PRESERVE
@@ -77,8 +81,9 @@
   alias fgrep='fgrep'$TTY_COLOR
   alias egrep='egrep'$TTY_COLOR
 
-  # greps a file for lines without comments
-  alias grep-nocomments='grep -Ev '\''^( *)(#|$|;)'\'''
+# grep output for lines without common comment
+  alias nocomments='grep -Evi '\''^( *)(#|$|;|//|--|rem|::|\"|\|\|)'\'''
+  alias comments='grep -Ei '\''^(#|;|//|--|rem|::|\"|\|\|)'\'''
 
 # dmesg
   if [[ `uname` == 'Linux' ]]; then
@@ -103,4 +108,6 @@
 # unset variables
   unset TTY_COLOR
   unset GNU_TTY_COLOR
+  unset GNU_PRESERVE
+  unset GNU_i
   unset GNU

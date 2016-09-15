@@ -1,3 +1,5 @@
+#!/usr/bin/env ksh
+
 # enable emacs like keyboard support
 set -o emacs
 
