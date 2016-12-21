@@ -34,7 +34,7 @@
   alias cd..='cd ..'
 
 # confirmation on mass file changes
-  alias mv$GNU='mv'$GNU_i
+  alias mv=$GNU'mv'$GNU_i
   alias cp=$GNU'cp'$GNU_i
   alias ln=$GNU'ln'$GNU_i
 
@@ -42,6 +42,10 @@
   alias chown=$GNU'chown'$GNU_PRESERVE
   alias chmod=$GNU'chmod'$GNU_PRESERVE
   alias chgrp=$GNU'chgrp'$GNU_PRESERVE
+
+# ssh
+  # alias ssh to change the term to xterm before the session starts
+  alias ssh="TERM=xterm ssh"
 
 # mount
   alias mount='mount |column -t'
