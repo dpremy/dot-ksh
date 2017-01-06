@@ -71,6 +71,11 @@
 # tar
   alias untar='tar -zxvf'
 
+# most
+  if (`command -v most >/dev/null 2>&1`); then
+    export PAGER="most"
+  fi
+
 # rsync
   if (`command -v rsync >/dev/null 2>&1`); then
     alias rsync-copy='rsync -avzh --progress --stats'
