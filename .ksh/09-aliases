@@ -85,6 +85,9 @@
     alias rsync-update='rsync -avzuh --progress --stats'
   fi
 
+# termbin.com alias
+  alias termbin='nc termbin.com 9999'
+
 # grep
   alias grep='grep'$TTY_COLOR
   alias fgrep='fgrep'$TTY_COLOR
