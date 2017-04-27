@@ -45,7 +45,7 @@
 
 # ssh
   # alias ssh to change the term to xterm before the session starts
-  alias ssh="TERM=xterm ssh"
+  alias ssh='TERM=xterm ssh'
 
 # mount
   alias mount='mount |column -t'
@@ -73,7 +73,7 @@
 
 # most
   if (`command -v most >/dev/null 2>&1`); then
-    export PAGER="most"
+    export PAGER='most'
   fi
 
 # rsync
@@ -85,8 +85,10 @@
     alias rsync-update='rsync -avzuh --progress --stats'
   fi
 
-# termbin.com alias
+# cli to online paste aliases
   alias termbin='nc termbin.com 9999'
+  alias clibin='curl -q -F "clbin=<-" https://clbin.com; echo Append "?hl" to the url for highlighting'
+  alias pastebin=clibin
 
 # grep
   alias grep='grep'$TTY_COLOR
