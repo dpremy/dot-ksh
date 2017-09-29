@@ -91,9 +91,9 @@
   alias pastebin=clibin
 
 # grep
-  alias grep=$GNU'grep'$TTY_COLOR
-  alias fgrep=$GNU'fgrep'$TTY_COLOR
-  alias egrep=$GNU'egrep'$TTY_COLOR
+  alias grep=$GNU'grep'$GNU_TTY_COLOR
+  alias fgrep=$GNU'fgrep'$GNU_TTY_COLOR
+  alias egrep=$GNU'egrep'$GNU_TTY_COLOR
 
 # grep output for lines without common comment
   alias nocomments='grep -Evi '\''^( *)(#|$|;|//|--|rem|::|\"|\|\|)'\'''
