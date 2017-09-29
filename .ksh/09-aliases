@@ -90,10 +90,16 @@
   alias clibin='curl -q -F "clbin=<-" https://clbin.com; echo Append "?hl" to the url for highlighting'
   alias pastebin=clibin
 
-# grep
-  alias grep=$GNU'grep'$GNU_TTY_COLOR
-  alias fgrep=$GNU'fgrep'$GNU_TTY_COLOR
-  alias egrep=$GNU'egrep'$GNU_TTY_COLOR
+# grep detect if gnu grep is installed
+  if (`command -v ggrep >/dev/null 2>&1`); then
+    alias grep='ggrep --color=tty'
+    alias fgrep='gfgrep --color=tty'
+    alias egrep='gegrep --color=tty'
+  elif [[ `uname` == 'Linux' ]]; then
+    alias grep='grep'$TTY_COLOR
+    alias fgrep='fgrep'$TTY_COLOR
+    alias egrep='egrep'$TTY_COLOR
+  fi
 
 # grep output for lines without common comment
   alias nocomments='grep -Evi '\''^( *)(#|$|;|//|--|rem|::|\"|\|\|)'\'''
