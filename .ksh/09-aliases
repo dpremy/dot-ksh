@@ -47,9 +47,6 @@
   # alias ssh to change the term to xterm before the session starts
   alias ssh='TERM=xterm ssh'
 
-# mount
-  alias mount='mount |column -t'
-
 # who
   # show user idle time
   alias who='who -u'
