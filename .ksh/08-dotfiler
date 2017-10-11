@@ -1,3 +1,5 @@
+#!/usr/bin/env ksh
+
 if [ -e ~/.files/bin ]; then
    export PATH=~/.files/bin:$PATH
 fi
