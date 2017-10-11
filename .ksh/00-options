@@ -1,8 +1,20 @@
 #!/usr/bin/env ksh
 
+# utf8 locale support
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# history options
+export HISTCONTROL=ignoredups
+export HISTFILE="$HOME/.ksh_history"
+export HISTSIZE=5000
+
+# set vi as default visual editor
+export VISUAL="vi"
+
 # enable emacs like keyboard support
 set -o emacs
-
 # arrow keys support
 alias __A=`echo "\020"`     # up arrow = ^p = back a command
 alias __B=`echo "\016"`     # down arrow = ^n = down a command
@@ -10,16 +22,3 @@ alias __C=`echo "\006"`     # right arrow = ^f = forward a character
 alias __D=`echo "\002"`     # left arrow = ^b = back a character
 alias __H=`echo "\001"`     # home = ^a = start of line
 alias __Y=`echo "\005"`     # end = ^e = end of line
-
-# utf8 locale support
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# set vi as default visual editor
-export VISUAL="vi"
-
-# history options
-export EXTENDED_HISTORY=ON
-export HISTFILE="$HOME/.ksh_history"
-export HISTSIZE=${HISTSIZE:-"5000"}
