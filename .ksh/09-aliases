@@ -10,7 +10,7 @@
   GNU=''
 
 # detect if tty color support is installed
-  if [ $(whence -p dircolor) ]; then
+  if [ $(whence -p dircolors) ]; then
     TTY_COLOR=' --color=tty'
     GNU_TTY_COLOR=' --color=tty'
   fi
