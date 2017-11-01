@@ -4,6 +4,9 @@
 # Otherwise, if ksh is started for a different shell, do the same export but from within that shell
 # export ENV=~/.profile
 
+# uncomment next line to enable script debugging
+#set -x
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -16,3 +19,5 @@ done
 
 test -f ~/.kshrc_local && source ~/.kshrc_local
 
+#disable debugging
+set +x
