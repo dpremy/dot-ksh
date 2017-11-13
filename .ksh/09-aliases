@@ -1,79 +1,82 @@
 #!/usr/bin/env ksh
 
+# shellcheck disable=2139
+true
+
 # advice on using which, whence, and other shell built in functions
 # https://unix.stackexchange.com/a/85250
 
 # set default variables
-  TTY_COLOR=''
-  GNU_TTY_COLOR=''
-  GNU_PRESERVE=''
-  GNU=''
+  TTY_COLOR=""
+  GNU_TTY_COLOR=""
+  GNU_PRESERVE=""
+  GNU=""
 
 # detect if tty color support is installed
-  if [ $(whence -p dircolors) ]; then
-    TTY_COLOR=' --color=tty'
-    GNU_TTY_COLOR=' --color=tty'
+  if [ "$(whence -p dircolors)" ]; then
+    TTY_COLOR="--color=tty"
+    GNU_TTY_COLOR="--color=tty"
   fi
 
 # detect if gnu coreutils are installed
-  if [ $(whence -p gdircolors) ]; then
-    GNU_TTY_COLOR=' --color=tty'
-    GNU_PRESERVE=' --preserve-root'
-    GNU='g'
+  if [ "$(whence -p gdircolors)" ]; then
+    GNU_TTY_COLOR="--color=tty"
+    GNU_PRESERVE="--preserve-root"
+    GNU="g"
   fi
 
 # directory management
-  alias ..='cd ..'
-  alias cd..='cd ..'
+  alias ..="cd .."
+  alias cd..="cd .."
 
 # set aliases which are dependent on the gnu version binaries
   if [ -z "$GNU" ]; then
     # ls aliases
-    alias ls=$(whence -p ls)' -F'$GNU_TTY_COLOR
-    alias lsa=$(whence -p ls)' -lah'$GNU_TTY_COLOR
-    alias l=$(whence -p ls)' -la'$GNU_TTY_COLOR
-    alias ll=$(whence -p ls)' -l'$GNU_TTY_COLOR
-    alias la=$(whence -p ls)' -lA --group-directories-first'$GNU_TTY_COLOR
-    alias ls.=$(whence -p ls)' -d .*'$GNU_TTY_COLOR
+    alias ls="$(whence -p ls)"' -F '"$GNU_TTY_COLOR"
+    alias lsa="$(whence -p ls)"' -lah '"$GNU_TTY_COLOR"
+    alias l="$(whence -p ls)"' -la '"$GNU_TTY_COLOR"
+    alias ll="$(whence -p ls)"' -l '"$GNU_TTY_COLOR"
+    alias la="$(whence -p ls)"' -lA --group-directories-first '"$GNU_TTY_COLOR"
+    alias ls.="$(whence -p ls)"' -d .* '"$GNU_TTY_COLOR"
     # add confrimation on mass changes
-    alias mv=$(whence -p mv)' -i'
-    alias cp=$(whence -p cp)' -i'
+    alias mv="$(whence -p mv)"' -i'
+    alias cp="$(whence -p cp)"' -i'
     # ln on openbsd doesn't have -i option, set only on linux systems
-    if [[ `uname` == 'Linux' ]]; then
-      alias ln=$(whence -p ln)' -i'
+    if [[ $(uname) == 'Linux' ]]; then
+      alias ln="$(whence -p ln)"' -i'
     fi
     # prompt if changing perms or owner on more than 3 files at a time
-    alias chown=$(whence -p chown)$GNU_PRESERVE
-    alias chmod=$(whence -p chmod)$GNU_PRESERVE
-    alias chgrp=$(whence -p chgrp)$GNU_PRESERVE
+    alias chown="$(whence -p chown)"' '"$GNU_PRESERVE"
+    alias chmod="$(whence -p chmod)"' '"$GNU_PRESERVE"
+    alias chgrp="$(whence -p chgrp)"' '"$GNU_PRESERVE"
   else
     # ls aliases
-    alias ls=$(whence -p gls)' -F'$GNU_TTY_COLOR
-    alias lsa=$(whence -p gls)' -lah'$GNU_TTY_COLOR
-    alias l=$(whence -p gls)' -la'$GNU_TTY_COLOR
-    alias ll=$(whence -p gls)' -l'$GNU_TTY_COLOR
-    alias la=$(whence -p gls)' -lA --group-directories-first'$GNU_TTY_COLOR
-    alias ls.=$(whence -p gls)' -d .*'$GNU_TTY_COLOR
+    alias ls="$(whence -p gls)"' -F '"$GNU_TTY_COLOR"
+    alias lsa="$(whence -p gls)"' -lah '"$GNU_TTY_COLOR"
+    alias l="$(whence -p gls)"' -la '"$GNU_TTY_COLOR"
+    alias ll="$(whence -p gls)"' -l '"$GNU_TTY_COLOR"
+    alias la="$(whence -p gls)"' -lA --group-directories-first '"$GNU_TTY_COLOR"
+    alias ls.="$(whence -p gls)"' -d .* '"$GNU_TTY_COLOR"
     # promt on mass file changes
-    alias mv=$(whence -p gmv)' -i'
-    alias cp=$(whence -p gcp)' -i'
-    alias ln=$(whence -p gln)' -i'
+    alias mv="$(whence -p gmv)"' -i'
+    alias cp="$(whence -p gcp)"' -i'
+    alias ln="$(whence -p gln)"' -i'
     # prompt if changing perms or owner on more than 3 files at a time
-    alias chown=$(whence -p gchown)$GNU_PRESERVE
-    alias chmod=$(whence -p gchmod)$GNU_PRESERVE
-    alias chgrp=$(whence -p gchgrp)$GNU_PRESERVE
+    alias chown="$(whence -p gchown)"' '"$GNU_PRESERVE"
+    alias chmod="$(whence -p gchmod)"' '"$GNU_PRESERVE"
+    alias chgrp="$(whence -p gchgrp)"' '"$GNU_PRESERVE"
   fi
 
 # grep options
   # detect if gnu grep is installed, otherwise alias regular names
-  if [ $(whence -p ggrep) ]; then
-    alias grep=$(whence -p ggrep)' --color=tty'
-    alias fgrep=$(whence -p gfgrep)' --color=tty'
-    alias egrep=$(whence -p gegrep)' --color=tty'
-  elif [[ `uname` == 'Linux' ]]; then
-    alias grep=$(whence -p grep)$TTY_COLOR
-    alias fgrep=$(whence -p fgrep)$TTY_COLOR
-    alias egrep=$(whence -p egrep)$TTY_COLOR
+  if [ "$(whence -p ggrep)" ]; then
+    alias grep="$(whence -p ggrep)"' --color=tty'
+    alias fgrep="$(whence -p gfgrep)"' --color=tty'
+    alias egrep="$(whence -p gegrep)"' --color=tty'
+  elif [[ $(uname) == 'Linux' ]]; then
+    alias grep="$(whence -p grep)"' '"$TTY_COLOR"
+    alias fgrep="$(whence -p fgrep)"' '"$TTY_COLOR"
+    alias egrep="$(whence -p egrep)"' '"$TTY_COLOR"
   fi
 
 # ssh
@@ -85,38 +88,39 @@
   alias who='who -u'
 
 # htop
-  if [ $(whence -p htop) ]; then
-    alias top=$(whence -p htop)
+  if [ "$(whence -p htop)" ]; then
+    alias top="$(whence -p htop)"
   fi
 
 # diff
-  if [ $(whence -p colordiff) ]; then
-    alias diff=$(whence -p colordiff)
+  if [ "$(whence -p colordiff)" ]; then
+    alias diff="$(whence -p colordiff)"
   fi
 
 # wget
   # enable continue of downloads
-  if [ $(whence -p wget) ]; then
-    alias wget=$(whence -p wget)' -c'
+  if [ "$(whence -p wget)" ]; then
+    alias wget="$(whence -p wget)"' -c'
   fi
 
 # tar
-  if [ $(whence -p tar) ]; then
-    alias untar=$(whence -p tar)' -zxvf'
+  if [ "$(whence -p tar)" ]; then
+    alias untar="$(whence -p tar)"' -zxvf'
   fi
 
 # most
-  if [ $(whence -p most) ]; then
-    export PAGER=$(whence -p most)
+  if [ "$(whence -p most)" ]; then
+    PAGER="$(which most)"
+    export PAGER
   fi
 
 # rsync
-  if [ $(whence -p rsync) ]; then
-    alias rsync-copy=$(whence -p rsync)' -avzh --progress --stats'
-    alias rsync-mirror=$(whence -p rsync)' -avzh --progress --stats --delete-before --delete-excluded'
-    alias rsync-move=$(whence -p rsync)' -avzh --progress --stats --remove-source-files'
-    alias rsync-synchronize=$(whence -p rsync)' -avzuh --progress --stats --delete'
-    alias rsync-update=$(whence -p rsync)' -avzuh --progress --stats'
+  if [ "$(whence -p rsync)" ]; then
+    alias rsync-copy="$(whence -p rsync)"' -avzh --progress --stats'
+    alias rsync-mirror="$(whence -p rsync)"' -avzh --progress --stats --delete-before --delete-excluded'
+    alias rsync-move="$(whence -p rsync)"' -avzh --progress --stats --remove-source-files'
+    alias rsync-synchronize="$(whence -p rsync)"' -avzuh --progress --stats --delete'
+    alias rsync-update="$(whence -p rsync)"' -avzuh --progress --stats'
   fi
 
 # cli to online paste aliases
@@ -129,23 +133,23 @@
   alias comments='grep -Ei '\''^(#|;|//|--|rem|::|\"|\|\|)'\'''
 
 # dmesg
-  if [[ `uname` == 'Linux' ]]; then
+  if [[ $(uname) == 'Linux' ]]; then
     alias dmesg='dmesg -L auto -T'
   fi
 
 # disk, partition, folder and file usage commands
   # disk usage in the current directory
-  alias usagedirectory=$(whence -p du)' -ch 2> /dev/null | tail -1'
+  alias usagedirectory="$(whence -p du)"' -ch 2> /dev/null | tail -1'
 
   # total disk usage
-  alias usagedisk=$(whence -p df)' -hl --total | tail -1'
+  alias usagedisk="$(whence -p df)"' -hl --total | tail -1'
 
   # individual partition usages without the temporary memory values
-  alias usagepartition=$(whence -p df)' -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
+  alias usagepartition="$(whence -p df)"' -hlT --exclude-type=tmpfs --exclude-type=devtmpfs'
 
   # largest folders within current dir
   function usagehogs {
-    du -k * 2>/dev/null | sort -nr | awk '{ if($1>=1024*1024) {size=$1/1024/1024; unit="G"} else if($1>=1024) {size=$1/1024; unit="M"} else {size=$1; unit="K"}; if(size<10) format="%.1f%s"; else format="%.0f%s"; res=sprintf(format,size,unit); printf "%-8s %s\n",res,$2 }'
+    du -k ./* 2>/dev/null | sort -nr | awk '{ if($1>=1024*1024) {size=$1/1024/1024; unit="G"} else if($1>=1024) {size=$1/1024; unit="M"} else {size=$1; unit="K"}; if(size<10) format="%.1f%s"; else format="%.0f%s"; res=sprintf(format,size,unit); printf "%-8s %s\n",res,$2 }'
   }
 
 # unset variables

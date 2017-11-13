@@ -14,7 +14,7 @@ case $- in
 esac
 
 for kshrc_config in ~/.ksh/* ; do
-    . $kshrc_config
+    . "$kshrc_config"
 done
 
 test -f ~/.kshrc_local && source ~/.kshrc_local
