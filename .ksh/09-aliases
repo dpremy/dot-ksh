@@ -12,6 +12,14 @@ true
   GNU_PRESERVE=""
   GNU=""
 
+# create aliases to sudo and doas so that aliases can be run via sudo and doas
+  if command -v sudo > /dev/null 2>&1; then
+    alias sudo='sudo '
+  fi
+  if command -v doas > /dev/null 2>&1; then
+    alias doas='doas '
+  fi
+
 # detect if tty color support is installed
   if [ "$(whence -p dircolors)" ]; then
     TTY_COLOR="--color=tty"
