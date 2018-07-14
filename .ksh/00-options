@@ -22,3 +22,6 @@ alias __C=`echo "\006"`     # right arrow = ^f = forward a character
 alias __D=`echo "\002"`     # left arrow = ^b = back a character
 alias __H=`echo "\001"`     # home = ^a = start of line
 alias __Y=`echo "\005"`     # end = ^e = end of line
+
+# disable software flow control so C-s doesn't enable terminal scroll lock, in turn requiring C-q
+stty -ixon
