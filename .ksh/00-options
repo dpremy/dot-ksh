@@ -7,7 +7,7 @@ export LC_ALL=en_US.UTF-8
 
 # history options
 export HISTCONTROL=ignoredups
-export HISTFILE="$HOME/.ksh_history"
+export HISTFILE="${HOME}/.ksh_history"
 export HISTSIZE=5000
 
 # set vi as default visual editor

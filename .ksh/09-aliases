@@ -38,14 +38,14 @@ true
   alias cd..="cd .."
 
 # set aliases which are dependent on the gnu version binaries
-  if [ -z "$GNU" ]; then
+  if [ -z "${GNU}" ]; then
     # ls aliases
-    alias ls="$(whence -p ls)"' -F '"$GNU_TTY_COLOR"
-    alias lsa="$(whence -p ls)"' -lah '"$GNU_TTY_COLOR"
-    alias l="$(whence -p ls)"' -la '"$GNU_TTY_COLOR"
-    alias ll="$(whence -p ls)"' -l '"$GNU_TTY_COLOR"
-    alias la="$(whence -p ls)"' -lA --group-directories-first '"$GNU_TTY_COLOR"
-    alias ls.="$(whence -p ls)"' -d .* '"$GNU_TTY_COLOR"
+    alias ls="$(whence -p ls)"' -F '"${GNU_TTY_COLOR}"
+    alias lsa="$(whence -p ls)"' -lah '"${GNU_TTY_COLOR}"
+    alias l="$(whence -p ls)"' -la '"${GNU_TTY_COLOR}"
+    alias ll="$(whence -p ls)"' -l '"${GNU_TTY_COLOR}"
+    alias la="$(whence -p ls)"' -lA --group-directories-first '"${GNU_TTY_COLOR}"
+    alias ls.="$(whence -p ls)"' -d .* '"${GNU_TTY_COLOR}"
     # add confrimation on mass changes
     alias mv="$(whence -p mv)"' -i'
     alias cp="$(whence -p cp)"' -i'
@@ -54,25 +54,25 @@ true
       alias ln="$(whence -p ln)"' -i'
     fi
     # prompt if changing perms or owner on more than 3 files at a time
-    alias chown="$(whence -p chown)"' '"$GNU_PRESERVE"
-    alias chmod="$(whence -p chmod)"' '"$GNU_PRESERVE"
-    alias chgrp="$(whence -p chgrp)"' '"$GNU_PRESERVE"
+    alias chown="$(whence -p chown)"' '"${GNU_PRESERVE}"
+    alias chmod="$(whence -p chmod)"' '"${GNU_PRESERVE}"
+    alias chgrp="$(whence -p chgrp)"' '"${GNU_PRESERVE}"
   else
     # ls aliases
-    alias ls="$(whence -p gls)"' -F '"$GNU_TTY_COLOR"
-    alias lsa="$(whence -p gls)"' -lah '"$GNU_TTY_COLOR"
-    alias l="$(whence -p gls)"' -la '"$GNU_TTY_COLOR"
-    alias ll="$(whence -p gls)"' -l '"$GNU_TTY_COLOR"
-    alias la="$(whence -p gls)"' -lA --group-directories-first '"$GNU_TTY_COLOR"
-    alias ls.="$(whence -p gls)"' -d .* '"$GNU_TTY_COLOR"
+    alias ls="$(whence -p gls)"' -F '"${GNU_TTY_COLOR}"
+    alias lsa="$(whence -p gls)"' -lah '"${GNU_TTY_COLOR}"
+    alias l="$(whence -p gls)"' -la '"${GNU_TTY_COLOR}"
+    alias ll="$(whence -p gls)"' -l '"${GNU_TTY_COLOR}"
+    alias la="$(whence -p gls)"' -lA --group-directories-first '"${GNU_TTY_COLOR}"
+    alias ls.="$(whence -p gls)"' -d .* '"${GNU_TTY_COLOR}"
     # promt on mass file changes
     alias mv="$(whence -p gmv)"' -i'
     alias cp="$(whence -p gcp)"' -i'
     alias ln="$(whence -p gln)"' -i'
     # prompt if changing perms or owner on more than 3 files at a time
-    alias chown="$(whence -p gchown)"' '"$GNU_PRESERVE"
-    alias chmod="$(whence -p gchmod)"' '"$GNU_PRESERVE"
-    alias chgrp="$(whence -p gchgrp)"' '"$GNU_PRESERVE"
+    alias chown="$(whence -p gchown)"' '"${GNU_PRESERVE}"
+    alias chmod="$(whence -p gchmod)"' '"${GNU_PRESERVE}"
+    alias chgrp="$(whence -p gchgrp)"' '"${GNU_PRESERVE}"
   fi
 
 # grep options
@@ -82,9 +82,9 @@ true
     alias fgrep="$(whence -p gfgrep)"' --color=tty'
     alias egrep="$(whence -p gegrep)"' --color=tty'
   elif [[ $(uname) == 'Linux' ]]; then
-    alias grep="$(whence -p grep)"' '"$TTY_COLOR"
-    alias fgrep="$(whence -p fgrep)"' '"$TTY_COLOR"
-    alias egrep="$(whence -p egrep)"' '"$TTY_COLOR"
+    alias grep="$(whence -p grep)"' '"${TTY_COLOR}"
+    alias fgrep="$(whence -p fgrep)"' '"${TTY_COLOR}"
+    alias egrep="$(whence -p egrep)"' '"${TTY_COLOR}"
   fi
 
 # ssh

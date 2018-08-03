@@ -1,9 +1,9 @@
 #!/usr/bin/env ksh
 
-if [ -e ~/.files/bin ]; then
-   export PATH=~/.files/bin:$PATH
+if [ -e ${HOME}/.files/bin ]; then
+   export PATH=~/.files/bin:${PATH}
 fi
 
-if [ -e ~/.dotfiles/bin ]; then
-   export PATH=~/.dotfiles/bin:$PATH
+if [ -e ${HOME}/.dotfiles/bin ]; then
+   export PATH=${HOME}/.dotfiles/bin:${PATH}
 fi
