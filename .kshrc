@@ -13,7 +13,8 @@ case $- in
       *) return;;
 esac
 
-for kshrc_config in "${HOME}/.ksh/"* ; do
+# source all numbered files in ${HOME}/.ksh/
+for kshrc_config in "${HOME}/.ksh/"[0-9]* ; do
     . "${kshrc_config}"
 done
 
