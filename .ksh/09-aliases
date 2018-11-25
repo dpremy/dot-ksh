@@ -46,7 +46,7 @@ true
     alias ll="$(whence -p ls)"' -l '"${GNU_TTY_COLOR}"
     alias la="$(whence -p ls)"' -lA --group-directories-first '"${GNU_TTY_COLOR}"
     alias ls.="$(whence -p ls)"' -d .* '"${GNU_TTY_COLOR}"
-    # add confrimation on mass changes
+    # add confirmation on mass changes
     alias mv="$(whence -p mv)"' -i'
     alias cp="$(whence -p cp)"' -i'
     # ln on openbsd doesn't have -i option, set only on linux systems
@@ -65,7 +65,7 @@ true
     alias ll="$(whence -p gls)"' -l '"${GNU_TTY_COLOR}"
     alias la="$(whence -p gls)"' -lA --group-directories-first '"${GNU_TTY_COLOR}"
     alias ls.="$(whence -p gls)"' -d .* '"${GNU_TTY_COLOR}"
-    # promt on mass file changes
+    # prompt on mass file changes
     alias mv="$(whence -p gmv)"' -i'
     alias cp="$(whence -p gcp)"' -i'
     alias ln="$(whence -p gln)"' -i'
