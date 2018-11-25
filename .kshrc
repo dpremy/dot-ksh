@@ -13,11 +13,12 @@ case $- in
       *) return;;
 esac
 
-for kshrc_config in "${HOME}/.ksh/"* ; do
+# source all numbered files in ${HOME}/.ksh/
+for kshrc_config in "${HOME}/.ksh/"[0-9]* ; do
     . "${kshrc_config}"
 done
 
-test -f "${HOME}/.kshrc_local" && source "${HOME}/.kshrc_local"
+test -f "${HOME}/.kshrc_local" && . "${HOME}/.kshrc_local"
 
 #disable debugging
 set +x
