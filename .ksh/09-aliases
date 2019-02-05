@@ -131,10 +131,10 @@ true
     alias rsync-update="$(whence -p rsync)"' -avzuh --progress --stats'
   fi
 
-# cli to online paste aliases
+# terminal to online paste
   alias termbin='nc termbin.com 9999'
-  alias clibin='curl -q -F "clbin=<-" https://clbin.com; echo Append "?hl" to the url for highlighting'
-  alias pastebin=clibin
+  alias clbin='curl -q -F "clbin=<-" https://clbin.com; echo Append "?hl" to the url for highlighting'
+  alias pastebin=clbin
 
 # grep output for lines without common comment
   alias nocomments='grep -Evi '\''^( *)(#|$|;|//|--|rem|::|\"|\|\|)'\'''
