@@ -142,7 +142,7 @@ true
 
 # dmesg
   if [[ $(uname) == 'Linux' ]]; then
-    alias dmesg='dmesg -L auto -T'
+    alias dmesg='dmesg -Lauto -T'
   fi
 
 # disk, partition, folder and file usage commands
