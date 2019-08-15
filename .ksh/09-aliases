@@ -136,6 +136,20 @@ true
   alias clbin='curl -q -F "clbin=<-" https://clbin.com; echo Append "?hl" to the url for highlighting'
   alias pastebin=clbin
 
+# external IP via DNS
+  function wanip4 {
+    echo "External IP:"
+    echo -n "  myip.opendns.com: "; dig @resolver1.opendns.com A myip.opendns.com +short -4 +time=1
+    echo -n "  whoami.akamai.net: "; dig @ns1-1.akamaitech.net ANY whoami.akamai.net +short -4 +time=1
+    echo -n "  o-o.myaddr.l.google.com: "; dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -4 +time=1
+    echo -n "  api.ipify.org: "; curl -s https://api.ipify.org ; printf "\n"
+  }
+  function wanip6 {
+    echo "External IP:"
+    echo -n "  o-o.myaddr.l.google.com: "; dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -6 +time=1
+    echo -n "  api6.ipify.org: "; curl -s https://api6.ipify.org ; printf "\n"
+  }
+
 # grep output for lines without common comment
   alias nocomments='grep -Evi '\''^( *)(#|$|;|//|--|rem|::|\"|\|\|)'\'''
   alias comments='grep -Ei '\''^(#|;|//|--|rem|::|\"|\|\|)'\'''
