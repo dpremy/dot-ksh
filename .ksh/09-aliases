@@ -87,10 +87,6 @@ true
     alias egrep="$(whence -p egrep)"' '"${TTY_COLOR}"
   fi
 
-# ssh
-  # alias ssh to change the term to xterm before the session starts
-  alias ssh='TERM=xterm ssh'
-
 # who
   # show user idle time
   alias who='who -u'
