@@ -15,10 +15,17 @@ esac
 
 # source all numbered files in ${HOME}/.ksh/
 for kshrc_config in "${HOME}/.ksh/"[0-9]* ; do
+  if [ -x "${kshrc_config}" ]; then
     . "${kshrc_config}"
+  fi
 done
 
-test -f "${HOME}/.kshrc_local" && . "${HOME}/.kshrc_local"
+# source all ${HOME}/.kshrc_local files if found
+for kshrc_local in ${HOME}/.kshrc_local* ; do
+  if [ -x "${kshrc_local}" ]; then
+    . "${kshrc_local}"
+  fi
+done
 
 #disable debugging
 set +x
