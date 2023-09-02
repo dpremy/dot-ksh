@@ -16,6 +16,7 @@ esac
 # source all numbered files in ${HOME}/.ksh/
 for kshrc_config in "${HOME}/.ksh/"[0-9]* ; do
   if [ -x "${kshrc_config}" ]; then
+      # shellcheck disable=SC1090
     . "${kshrc_config}"
   fi
 done
@@ -23,6 +24,7 @@ done
 # source all ${HOME}/.kshrc_local files if found
 for kshrc_local in ${HOME}/.kshrc_local* ; do
   if [ -x "${kshrc_local}" ]; then
+      # shellcheck disable=SC1090
     . "${kshrc_local}"
   fi
 done
