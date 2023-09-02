@@ -1,0 +1,24 @@
+---
+kind: pipeline
+type: docker
+name: shellcheck
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: shellcheck
+  image: koalaman/shellcheck-alpine:stable
+  pull: if-not-exists
+  commands:
+  - shellcheck --shell ksh -S warning .kshrc
+  - shellcheck --shell ksh -S warning .ksh/*
+  - shellcheck --shell bash -S warning .bash/*
+  when:
+    branch: master
+    event:
+      - cron
+      target:
+        include:
+        - monthly
