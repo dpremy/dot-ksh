@@ -1,5 +1,7 @@
 # dpremy ksh config files and shell aliases
 
+![Build Status](https://ci.davidremy.me/api/badges/dpremy/dot-ksh/status.svg)
+
 ## Purpose
 
 This repository contains the dotfiles and configs I use with ksh. It is desinged to work with [dotfiler](https://github.com/svetlyak40wt/dotfiler), but can easily be used without it.
