@@ -10,8 +10,15 @@ export HISTCONTROL=ignoredups
 export HISTFILE="${HOME}/.ksh_history"
 export HISTSIZE=5000
 
-# set vi as default visual editor
-export VISUAL="vi"
+# editor and pager preferences
+VISUAL="$(command -v nvim 2>/dev/null || command -v vim 2>/dev/null || command -v vi)"
+EDITOR="$(command -v nvim 2>/dev/null || command -v vim 2>/dev/null || command -v vi)"
+SUDO_EDITOR="$(command -v nvim 2>/dev/null || command -v vim 2>/dev/null || command -v vi)"
+PAGER="$(command -v most 2>/dev/null || command -v less 2>/dev/null || command -v more)"
+export VISUAL
+export EDITOR
+export SUDO_EDITOR
+export PAGER
 
 # enable emacs like keyboard support
 set -o emacs
